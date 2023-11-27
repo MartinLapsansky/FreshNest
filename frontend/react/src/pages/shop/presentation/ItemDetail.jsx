@@ -1,3 +1,4 @@
+import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { addComment, getItem } from "../application/shop";
 import { useEffect, useState } from "react";
@@ -9,6 +10,8 @@ import ImageView from "../../../components/ImageView";
 
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { Item } from "../application/shop_model";
+import {deleteItem} from "../application/shop";
+import {toast} from "react-toastify";
 
 function ItemDetail() {
   const { id } = useParams();
@@ -40,10 +43,28 @@ function ItemDetail() {
   );
 }
 
+
 function LoadedPage({ item }) {
 
   const [comment, setComment] = useState("");
   var navigate = useNavigate();
+
+  const handleDelete = async () => {
+    try {
+      const result = await deleteItem(item._id);
+
+      if (result === 1) {
+        // Item deleted successfully
+        toast.success('Item deleted successfully');
+      } else {
+        // Item deletion failed
+        toast.error('Failed to delete item');
+      }
+    } catch (error) {
+      // Handle any unexpected errors
+      console.error('Error deleting item:', error);
+    }
+  };
 
   return (
     <>
@@ -79,6 +100,7 @@ function LoadedPage({ item }) {
               <h6 className="text-slate-500">4.5 out of 5</h6>
             </div>
             <p className="text-lg">{item.description}</p>
+            <button className="btn-success " onClick={handleDelete}>Delete item</button>
           </div>
         </div>
       </section>

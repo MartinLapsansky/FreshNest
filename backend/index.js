@@ -1,5 +1,11 @@
+// const express = import("express");
+// const bodyParser = import("body-parser");
+// const cors = import("cors");
+// const logger = import("./utils/logger");
+// import("dotenv").config();
+
 const express = require("express");
-var bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
 const cors = require("cors");
 const logger = require("./utils/logger");
 require("dotenv").config();

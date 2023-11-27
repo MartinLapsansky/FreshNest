@@ -12,22 +12,22 @@ router.get("/isAdmin/:userId", async function (req, res) {});
 // Delete an Item
 // Body: {itemId: ObjectId, adminId: ObjectId}
 router.post("/deleteItem", async (req, res) => {
-  var { itemId, adminId } = req.body;
+  var { userId, itemId } = req.body;
 
   // Check and validate itemId
   if (!mongoose.Types.ObjectId.isValid(itemId)) {
     return res.status(404).send(getErrorResponse("Invalid Item ID"));
   }
-  // Check and validate adminId
-  if (!mongoose.Types.ObjectId.isValid(adminId)) {
+  //Check and validate adminId
+  if (!mongoose.Types.ObjectId.isValid(userId)) {
     return res.status(404).send(getErrorResponse("Invalid Admin ID"));
   }
 
-  var user = await User.findOne({ _id: adminId });
-  console.log(user);
-  if (user.userType !== "admin") {
-    return res.status(404).send(getErrorResponse("You are not an Admin!"));
-  }
+  // var user = await User.findOne({ _id: userId });
+  // console.log(user);
+  // if (user.userType !== "admin") {
+  //   return res.status(404).send(getErrorResponse("You are not an Admin!"));
+  // }
 
   // When mongoose deletes an item it returns it as well
   var deletedItem = await MilletItem.findByIdAndDelete(itemId);

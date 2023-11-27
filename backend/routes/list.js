@@ -51,11 +51,14 @@ router.get("/getAll/:farmerID", async (req, res) => {
  * @param {Array<string>} req.body.image - The array with image URL of the item.
  */
 router.post("/addItem", async (req, res) => {
-  console.log(req.body);
+  console.log("additem req body", req.body);
   const { error } = validateMilletItem(req.body);
+  console.log("additem error", error);
   if (error) return res.send(getErrorResponse(error.details[0].message));
 
+  console.log("additem after error");
   if (!mongoose.Types.ObjectId.isValid(req.body.listedBy)) {
+    console.log("additem error mongoose");
     return res.status(404).send(getErrorResponse("Invalid User ID"));
   }
   let item = new MilletItem(req.body);

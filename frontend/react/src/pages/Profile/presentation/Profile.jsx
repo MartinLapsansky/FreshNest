@@ -1,3 +1,4 @@
+import React from "react";
 import NavBar from "../../../components/NavBar";
 import appState from "../../../data/AppState";
 import "./pattern.css";
@@ -7,7 +8,9 @@ import { FiSettings } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Footer from "../../../components/Footer";
-import UpdateModal from "./UpdateModal";
+import UpdateModal from "./UpdateModal.jsx";
+import axios from "axios";
+import {toast} from "react-toastify";
 
 function Profile() {
   var user = appState.getUserData();

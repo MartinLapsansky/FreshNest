@@ -1,3 +1,4 @@
+import React from "react";
 import landing_bg from "../../../assets/landing_bg.jpg";
 import explore_image from "../../../assets/explore.png";
 

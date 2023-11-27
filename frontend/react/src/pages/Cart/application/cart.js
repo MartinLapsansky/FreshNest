@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 import appState from "../../../data/AppState";
 import { CartItem } from "../../../modals/cart";
-import { emitCartUpdateEvent, saveCartCount } from "./cart_event";
+import { emitCartUpdateEvent, saveCartCount } from "./cart_event.js";
 
 /**
  * Get a list of cart items from the database.

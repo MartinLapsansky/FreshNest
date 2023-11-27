@@ -1,3 +1,4 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { motion } from "framer-motion";
@@ -5,7 +6,7 @@ import { useEffect, useState } from "react";
 import appState from "../data/AppState";
 import cartEmitter, {
   getCartCount,
-} from "../pages/Cart/application/cart_event";
+} from "../pages/Cart/application/cart_event.js";
 import { Link } from "react-router-dom";
 
 // ICONS

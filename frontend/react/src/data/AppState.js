@@ -1,4 +1,4 @@
-import { saveCartCount } from "../pages/Cart/application/cart_event";
+import { saveCartCount } from "../pages/Cart/application/cart_event.js";
 
 const APP_STATE_KEY = "AgroMillets-AppState";
 

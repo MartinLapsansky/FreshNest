@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
@@ -34,7 +35,7 @@ function Login() {
     setLoading(true);
 
     try {
-      var data = await login(email, password);
+      const data = await login(email, password);
       if (data.statusCode === 200) {
         await getCart();
         navigate("/home");

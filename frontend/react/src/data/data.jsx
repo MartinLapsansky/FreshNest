@@ -1,4 +1,5 @@
 // Icons
+import React from "react";
 import { BiSolidAward, BiSolidCoinStack, BiStoreAlt } from "react-icons/bi";
 import { BsEyeFill, BsListCheck } from "react-icons/bs";
 import { FaHandsHelping } from "react-icons/fa";

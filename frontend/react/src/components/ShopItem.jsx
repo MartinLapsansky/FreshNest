@@ -1,3 +1,4 @@
+import React from "react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import Rating from "react-rating";
@@ -21,6 +22,70 @@ function ShopItem({ itemId, itemCount = 1, isCart = false }) {
   var [item, setItem] = useState(undefined);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  // const handleRemoveFromCart = async (e) => {
+  //   e.stopPropagation();
+  //   await removeFromCart(itemId);
+  //   window.location.reload();
+  // };
+
+  // Updated function to calculate the total price of items in the cart
+  const calculateTotalPrice = (items, itemPrices) => {
+    console.log('Entering calculateTotalPrice function');
+    if (!Array.isArray(items) || !Array.isArray(itemPrices)) {
+      console.log('Invalid input detected. Throwing error.');
+
+      throw new Error('Invalid input. Both items and itemPrices should be arrays.');
+    }
+
+    if (items.length !== itemPrices.length) {
+      throw new Error('The lengths of items and itemPrices should be the same.');
+    }
+
+    let totalPrice = 0;
+
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i];
+      const itemPrice = itemPrices[i];
+
+      if (typeof item !== 'object' || typeof item.name !== 'string' || typeof item.price !== 'number' || typeof item.quantity !== 'number') {
+        throw new Error('Invalid item structure.');
+      }
+
+      if (typeof itemPrice !== 'number' || itemPrice < 0) {
+        throw new Error('Invalid item price.');
+      }
+
+      totalPrice += item.quantity * itemPrice;
+    }
+
+    return totalPrice;
+  }
+
+  const [setAdditionalDetails] = useState(null);
+
+  const fetchAdditionalDetails = async () => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(`Additional details for ${item.name}`);
+      }, 1000);
+    });
+  };
+
+  useEffect(() => {
+    getItem(itemId).then((data) => {
+      setItem(data);
+      setLoading(false);
+
+      // Fetch additional details when the item data is loaded
+      fetchAdditionalDetails().then((details) => {
+        setAdditionalDetails(details);
+      });
+    });
+  }, [itemId]);
+
+
+  // expect(component.funkcia(tvojeMockovanePoleItemov)).toBe(150);
 
   useEffect(() => {
     getItem(itemId).then((data) => {

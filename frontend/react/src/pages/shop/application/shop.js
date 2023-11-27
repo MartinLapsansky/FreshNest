@@ -156,25 +156,47 @@ export async function addComment(comment) {
  * @param {string} itemId - The ID of the item to delete.
  * @returns {Promise<number>}  A status code indicating success or failure.
  */
+// export async function deleteItem(itemId) {
+//   if (
+//     !appState.isUserLoggedIn() ||
+//     appState.getUserData().userType !== "admin"
+//   ) {
+//     toast.error("You must be an admin to delete an item");
+//     return 0;
+//   }
+//   const res = await axios.post(
+//     import.meta.env.VITE_API_URL + "/admin/deleteItem",
+//     {
+//       adminId: appState.getUserData()._id,
+//       itemId: itemId,
+//     }
+//   );
+//
+//   if (res.data.statusCode === 200) {
+//     toast.success(res.data.message);
+//   }
+//
+//   return 1;
+// }
+
 export async function deleteItem(itemId) {
-  if (
-    !appState.isUserLoggedIn() ||
-    appState.getUserData().userType != "admin"
-  ) {
-    toast.error("You must be an admin to delete an item");
+  if (!appState.isUserLoggedIn()) {
+    toast.error("You must be logged in to delete an item");
     return 0;
   }
+
   const res = await axios.post(
-    import.meta.env.VITE_API_URL + "/admin/deleteItem",
-    {
-      adminId: appState.getUserData()._id,
-      itemId: itemId,
-    }
+      import.meta.env.VITE_API_URL + "/admin/deleteItem",
+      {
+        userId: appState.getUserData()._id,
+        itemId: itemId,
+      }
   );
 
-  if (res.data.statusCode == 200) {
+  if (res.data.statusCode === 200) {
     toast.success(res.data.message);
   }
 
   return 1;
 }
+

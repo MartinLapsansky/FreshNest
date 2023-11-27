@@ -14,7 +14,7 @@ export default async function login(email, password) {
     password: password,
   });
 
-  if (res.data.statusCode == 200) {
+  if (res.data.statusCode === 200) {
     toast.success(res.data.message);
   } else {
     toast.error(res.data.message);
@@ -46,7 +46,7 @@ export async function signUp(data) {
   });
 
   console.log(res);
-  if (res.data.statusCode == 200) {
+  if (res.data.statusCode === 200) {
     toast.success(res.data.message);
   } else {
     toast.error(res.data.message);

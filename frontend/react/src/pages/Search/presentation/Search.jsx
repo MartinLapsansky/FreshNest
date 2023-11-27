@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import Loading from "../../../components/Loading";
 import NavBar from "../../../components/NavBar";
